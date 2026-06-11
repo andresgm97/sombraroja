@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="La Maldición de la Sombra Roja, un juego narrativo de decisiones, pactos y traiciones."
+    >
+    <meta name="theme-color" content="#120d16">
+    <title>La Maldición de la Sombra Roja</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+    <div class="atmosphere" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="fog fog-one"></div>
+      <div class="fog fog-two"></div>
+      <div class="ash" id="ash"></div>
+    </div>
+
+    <main id="main-content" class="app-shell">
+      <section id="title-screen" class="title-screen" aria-labelledby="game-title">
+        <div class="hero-map-lines" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <p class="eyebrow">Una aventura en las aguas prohibidas</p>
+          <h1 id="game-title">
+            <span>La Maldición de la</span>
+            <strong>Sombra Roja</strong>
+          </h1>
+          <p class="subtitle">Un juego de decisiones, pactos y traiciones</p>
+
+          <div class="title-ornament" aria-hidden="true">
+            <span></span>
+            <b>☠</b>
+            <span></span>
+          </div>
+
+          <button id="start-button" class="primary-button start-button" type="button">
+            <span>Comenzar la travesía</span>
+            <span class="button-arrow" aria-hidden="true">›</span>
+          </button>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <svg
+            class="pirate-scene"
+            viewBox="0 0 900 620"
+            role="img"
+            aria-label="Un barco fantasma navega frente a una luna roja"
+          >
+            <defs>
+              <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffb07d" stop-opacity=".9"/>
+                <stop offset="55%" stop-color="#d84343" stop-opacity=".55"/>
+                <stop offset="100%" stop-color="#8f1d2c" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="seaFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#15383c"/>
+                <stop offset="100%" stop-color="#070d15"/>
+              </linearGradient>
+              <filter id="softGlow">
+                <feGaussianBlur stdDeviation="8"/>
+              </filter>
+            </defs>
+            <circle cx="662" cy="190" r="152" fill="url(#moonGlow)" filter="url(#softGlow)"/>
+            <circle cx="662" cy="190" r="90" fill="#b92f3d"/>
+            <circle cx="635" cy="167" r="16" fill="#8f2330" opacity=".55"/>
+            <circle cx="694" cy="222" r="25" fill="#8f2330" opacity=".48"/>
+            <circle cx="701" cy="146" r="10" fill="#8f2330" opacity=".5"/>
+            <path d="M0 432 C150 390 236 454 370 420 C512 383 660 452 900 403 V620 H0Z" fill="url(#seaFill)"/>
+            <path d="M0 470 C130 432 255 493 390 458 C540 419 673 491 900 448" fill="none" stroke="#39706d" stroke-width="5" opacity=".42"/>
+            <path d="M90 530 C220 493 330 549 466 514 C616 475 720 542 860 506" fill="none" stroke="#8ab6a9" stroke-width="3" opacity=".2"/>
+            <g class="ship">
+              <path d="M244 403 L577 403 L523 484 L307 484Z" fill="#111016" stroke="#624733" stroke-width="5"/>
+              <path d="M291 479 Q410 526 526 479" fill="none" stroke="#07080d" stroke-width="18"/>
+              <path d="M403 188 L403 414" stroke="#171116" stroke-width="10"/>
+              <path d="M498 249 L498 414" stroke="#171116" stroke-width="8"/>
+              <path d="M399 215 Q316 244 301 368 Q358 344 399 365Z" fill="#24222a" stroke="#796249" stroke-width="4"/>
+              <path d="M412 228 Q486 253 486 357 Q449 337 412 359Z" fill="#1b1b22" stroke="#796249" stroke-width="4"/>
+              <path d="M505 271 Q552 294 558 366 Q530 350 505 363Z" fill="#24222a" stroke="#796249" stroke-width="3"/>
+              <path d="M320 277 L379 275 M431 282 L473 282 M515 310 L545 311" stroke="#a54545" stroke-width="4" opacity=".7"/>
+              <path d="M271 402 Q239 361 248 319 Q272 348 303 364" fill="#111016" stroke="#624733" stroke-width="4"/>
+              <path d="M574 402 L607 375" stroke="#624733" stroke-width="7"/>
+              <path d="M390 171 L417 171 L403 141Z" fill="#912838"/>
+              <circle cx="354" cy="437" r="8" fill="#d79a58"/>
+              <circle cx="401" cy="437" r="8" fill="#d79a58"/>
+              <circle cx="448" cy="437" r="8" fill="#d79a58"/>
+            </g>
+            <path d="M31 390 C175 350 304 405 430 378 C585 344 707 384 872 350" fill="none" stroke="#d7d6c5" stroke-width="23" opacity=".08" filter="url(#softGlow)"/>
+          </svg>
+
+          <div class="compass">
+            <span class="compass-n">N</span>
+            <span class="compass-e">E</span>
+            <span class="compass-s">S</span>
+            <span class="compass-w">O</span>
+            <i></i>
+          </div>
+        </div>
+
+        <p class="title-footnote">El mar recuerda todas las promesas.</p>
+      </section>
+
+      <section id="game-screen" class="game-screen" hidden>
+        <header class="game-header">
+          <button id="brand-button" class="brand-button" type="button" aria-label="Volver a la portada">
+            <span class="brand-mark" aria-hidden="true">☠</span>
+            <span>
+              <small>La Maldición de la</small>
+              <strong>Sombra Roja</strong>
+            </span>
+          </button>
+
+          <div class="header-actions">
+            <button id="map-button" class="icon-text-button" type="button">
+              <span aria-hidden="true">⌖</span>
+              <span>Mapa</span>
+              <b id="map-count" aria-label="Lugares descubiertos">1</b>
+            </button>
+            <button id="log-button" class="icon-text-button" type="button">
+              <span aria-hidden="true">☷</span>
+              <span>Bitácora</span>
+              <b id="log-count" aria-label="Decisiones registradas">0</b>
+            </button>
+            <button id="reset-button" class="icon-text-button danger-button" type="button">
+              <span aria-hidden="true">↻</span>
+              <span>Reiniciar</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="game-layout">
+          <aside class="hud" aria-labelledby="hud-title">
+            <div class="hud-heading">
+              <p>Estado del grupo</p>
+              <h2 id="hud-title">La tripulación</h2>
+            </div>
+
+            <div class="stat-list">
+              <div class="stat-row" data-stat="fragmentos">
+                <div class="stat-copy">
+                  <span><i class="stat-icon fragment-icon" aria-hidden="true">◆</i> Fragmentos</span>
+                  <strong id="stat-fragmentos">0</strong>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Fragmentos" aria-valuemin="0" aria-valuemax="6">
+                  <span id="meter-fragmentos"></span>
+                </div>
+              </div>
+
+              <div class="stat-row" data-stat="marcasSombra">
+                <div class="stat-copy">
+                  <span><i class="stat-icon shadow-icon" aria-hidden="true">✦</i> Marcas de sombra</span>
+                  <strong id="stat-marcasSombra">0</strong>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Marcas de sombra" aria-valuemin="0" aria-valuemax="6">
+                  <span id="meter-marcasSombra"></span>
+                </div>
+              </div>
+
+              <div class="stat-row" data-stat="pactos">
+                <div class="stat-copy">
+                  <span><i class="stat-icon pact-icon" aria-hidden="true">∞</i> Pactos</span>
+                  <strong id="stat-pactos">0</strong>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Pactos" aria-valuemin="0" aria-valuemax="5">
+                  <span id="meter-pactos"></span>
+                </div>
+              </div>
+
+              <div class="stat-row" data-stat="honor">
+                <div class="stat-copy">
+                  <span><i class="stat-icon honor-icon" aria-hidden="true">♜</i> Honor</span>
+                  <strong id="stat-honor">0</strong>
+                </div>
+                <div class="meter honor-meter" role="progressbar" aria-label="Honor" aria-valuemin="-5" aria-valuemax="8">
+                  <span id="meter-honor"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="route-panel">
+              <span>Rumbo actual</span>
+              <strong id="route-value">Aguas desconocidas</strong>
+            </div>
+
+            <div class="inventory">
+              <div class="inventory-title">
+                <span>Objetos</span>
+                <b id="object-count">0</b>
+              </div>
+              <ul id="object-list"></ul>
+            </div>
+          </aside>
+
+          <article id="story-card" class="story-card" aria-live="polite">
+            <div class="paper-grain" aria-hidden="true"></div>
+            <div id="story-content" class="story-content"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="log-dialog" class="modal log-modal">
+      <div class="modal-header">
+        <div>
+          <p>Registro de navegación</p>
+          <h2>Bitácora de decisiones</h2>
+        </div>
+        <button class="close-button" type="button" data-close-dialog="log-dialog" aria-label="Cerrar bitácora">×</button>
+      </div>
+      <ol id="log-list" class="log-list"></ol>
+      <p id="empty-log" class="empty-log">Las páginas aún están en blanco.</p>
+    </dialog>
+
+    <dialog id="map-dialog" class="modal map-modal">
+      <div class="modal-header map-modal-header">
+        <div>
+          <p id="map-eyebrow">Carta de navegación</p>
+          <h2 id="map-title">El rumbo de la Sombra Roja</h2>
+        </div>
+        <button class="close-button" type="button" data-close-dialog="map-dialog" aria-label="Cerrar mapa">×</button>
+      </div>
+      <div id="adventure-map" class="adventure-map"></div>
+      <div id="map-place-detail" class="map-place-detail" aria-live="polite"></div>
+      <div id="map-transition-copy" class="map-transition-copy" hidden>
+        <p id="map-transition-route"></p>
+        <h3 id="map-transition-heading"></h3>
+        <p id="map-transition-text"></p>
+        <button id="continue-route-button" class="primary-button" type="button">
+          <span>Continuar la travesía</span>
+          <span class="button-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </dialog>
+
+    <dialog id="reset-dialog" class="modal reset-modal">
+      <div class="reset-symbol" aria-hidden="true">↻</div>
+      <p>Una decisión irreversible</p>
+      <h2>¿Abandonar esta travesía?</h2>
+      <p class="reset-copy">La bitácora, los objetos y todas las marcas de esta partida desaparecerán.</p>
+      <div class="modal-actions">
+        <button class="secondary-button" type="button" data-close-dialog="reset-dialog">Conservar partida</button>
+        <button id="confirm-reset" class="primary-button danger-confirm" type="button">Reiniciar aventura</button>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <noscript>
+      <div class="noscript-message">Necesitas activar JavaScript para iniciar la travesía.</div>
+    </noscript>
+
+    <script src="app.js"></script>
+  </body>
+</html>
